@@ -5,13 +5,13 @@ using namespace std;
 
 int main() {
     
-    Hashtable<int> h = Hashtable<int>();
+    Hashtable<int>* h = new Hashtable<int>();
 
-    h.set("a", 1234);
-    h.set("b", 567);
+    h->set("a", 1234);
+    h->set("b", 567);
 
-    cout << h.get("a") << endl;
-    cout << h.get("b") << endl;
+    cout << h->get("a") << endl;
+    cout << h->get("b") << endl;
 
     return 0;
 }

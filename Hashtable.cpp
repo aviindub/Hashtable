@@ -8,19 +8,19 @@ using std::vector;
 
 template <typename V>
 Hashtable<V>::Hashtable () {
-    //size = 151;
-    //theArray = vector<Entry <V> >[size];
-    //for (int i = 0; i < size; ++i) {
-    //    theArray[i] = vector<Entry <V> >;
-    //}
+    size = 151;
+    //theArray = vector<Entry <V> >();
+    for (int i = 0; i < size; ++i) {
+        theArray[i] = vector<Entry <V> >();
+    }
 }
 
 template <typename V>
 V Hashtable<V>::get(string k) {
     vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < (int) chain.size(); ++i) {
-        if (k == chain.at(i).getKey()) {
-            return chain.at(i).getValue();
+        if (k == chain[i].getKey()) {
+            return chain[i].getValue();
         }
     }
     return (V) 0;
@@ -36,8 +36,8 @@ void Hashtable<V>::set(string k, V v) {
     } else {
         bool exists = false;
         for (int i = 0; i < (int) chain.size(); ++i) {
-            if (k == chain.at(i).getKey()) {
-                chain.at(i).setValue(v);
+            if (k == chain[i].getKey()) {
+                chain[i].setValue(v);
                 exists = true;
             }
         }
@@ -52,7 +52,7 @@ template <typename V>
 void Hashtable<V>::remove(string k) {
     vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < (int) chain.size(); ++i) {
-        if (k == chain.at(i).getKey()) {
+        if (k == chain[i].getKey()) {
             chain.erase(chain.begin()+i);
         }
     }
@@ -62,7 +62,7 @@ template <typename V>
 bool Hashtable<V>::contains(string k) {
     vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < (int) chain.size(); ++i) {
-        if (k == chain.at(i).getKey()) {
+        if (k == chain[i].getKey()) {
             return true;
         }
     }
