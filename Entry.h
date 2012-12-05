@@ -3,6 +3,8 @@
 
 #include <string>
 
+using std::string;
+
 template <typename V>
 class Entry {
     private:
@@ -11,6 +13,9 @@ class Entry {
 
     public:
         Entry(string k, V v);
+        string getKey();
         V getValue();
-        void setValue();
-}
+        void setValue(V v);
+};
+
+#endif

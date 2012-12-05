@@ -1,4 +1,7 @@
-#include "entry.h"
+#include "Entry.h"
+#include <string>
+
+using std::string;
 
 template <typename V>
 Entry<V>::Entry(string k, V v) {
@@ -7,16 +10,20 @@ Entry<V>::Entry(string k, V v) {
 }
 
 template <typename V>
-Entry<V>::getKey() {
+string Entry<V>::getKey() {
     return key;
 }
 
 template <typename V>
-Entry<V>::getValue() {
+V Entry<V>::getValue() {
     return value;
 }
 
 template <typename V>
-Entry<V>::setValue(V v) {
+void Entry<V>::setValue(V v) {
     value = v;
 }
+
+template class Entry<int>;
+template class Entry<double>;
+template class Entry<string>;

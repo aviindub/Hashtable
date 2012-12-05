@@ -7,17 +7,17 @@ using std::string;
 using std::vector;
 
 template <typename V>
-Hashtable::Hashtable () {
-    size = 151;
-    theArray = vector<Entry <V> >[size];
-    for (int i = 0; i < size; ++i) {
-        theArray[i] = vector<Entry <V> >
-    }
+Hashtable<V>::Hashtable () {
+    //size = 151;
+    //theArray = vector<Entry <V> >[size];
+    //for (int i = 0; i < size; ++i) {
+    //    theArray[i] = vector<Entry <V> >;
+    //}
 }
 
 template <typename V>
-V Hashtable::get(string k) {
-    vector<Entry <V> > chain = theArray[hash(k)]
+V Hashtable<V>::get(string k) {
+    vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < chain.size(); ++i) {
         if (k == chain.at(i).getKey()) {
             return chain.at(i).getValue();
@@ -27,10 +27,10 @@ V Hashtable::get(string k) {
 }
 
 template <typename V>
-void Hashtable::set(string k, V v) {
+void Hashtable<V>::set(string k, V v) {
     int kHash = hash(k);
     vector<Entry <V> > chain = theArray[kHash];
-    entry = Entry<V>(k, v);
+    Entry<V> entry = Entry<V>(k, v);
     if (chain.empty()) {
         chain.push_back(entry);
     } else {
@@ -49,8 +49,8 @@ void Hashtable::set(string k, V v) {
 
 
 template <typename V>
-void Hashtable::remove(string k) {
-    vector<Entry <V> > chain = theArray[hash(k)]
+void Hashtable<V>::remove(string k) {
+    vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < chain.size(); ++i) {
         if (k == chain.at(i).getKey()) {
             chain.erase(i);
@@ -59,8 +59,8 @@ void Hashtable::remove(string k) {
 }
 
 template <typename V>
-bool Hashtable::contains(string k) {
-    vector<Entry <V> > chain = theArray[hash(k)]
+bool Hashtable<V>::contains(string k) {
+    vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < chain.size(); ++i) {
         if (k == chain.at(i).getKey()) {
             return true;
@@ -70,10 +70,15 @@ bool Hashtable::contains(string k) {
 }
 
 template <typename V>
-int Hashtable::hash(string k) {
+int Hashtable<V>::hash(string k) {
     int sum = 0;
     for (int i = 0; i < (int) k.size(); ++i) {
-        sum += (int) k[i]
+        sum += (int) k[i];
     }
     return sum % size;
 }
+
+
+template class Entry<int>;
+template class Entry<double>;
+template class Entry<string>;
