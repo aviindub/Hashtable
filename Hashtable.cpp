@@ -53,7 +53,7 @@ void Hashtable<V>::remove(string k) {
     vector<Entry <V> > chain = theArray[hash(k)];
     for (int i = 0; i < chain.size(); ++i) {
         if (k == chain.at(i).getKey()) {
-            chain.erase(i);
+            chain.erase(chain.begin()+i);
         }
     }
 }
@@ -79,6 +79,6 @@ int Hashtable<V>::hash(string k) {
 }
 
 
-template class Entry<int>;
-template class Entry<double>;
-template class Entry<string>;
+template class Hashtable<int>;
+template class Hashtable<double>;
+template class Hashtable<string>;
